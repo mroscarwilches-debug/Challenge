@@ -2,5 +2,5 @@ echo "# Python
 __pycache__/
 *.pyc
 .env
-gym-app/.env
+**/.env
 " > .gitignore
