@@ -17,7 +17,7 @@ This repository contains the basic architecture of the project. We use Docker to
 
 This diagram shows the structure of the app. It explains how the Frontend, the API, and the Database communicate with each other:
 
-<img width="685" height="378" alt="WhatsApp Image 2026-05-13 at 9 55 03 PM" src="https://github.com/user-attachments/assets/e222947f-9a1b-4014-97ce-dad0d5a662f5" 
+<img width="685" height="378" alt="WhatsApp Image 2026-05-13 at 9 55 03 PM" src="https://github.com/user-attachments/assets/e222947f-9a1b-4014-97ce-dad0d5a662f5" />
 
 ---
 
