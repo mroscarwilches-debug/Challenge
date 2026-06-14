@@ -20,7 +20,7 @@ CONVERSION_FACTOR = 2.20462
 def convert_kg_to_lb(kg_value):
     """Convert kilograms to pounds."""
     # TODO: return the converted value in pounds
-    user_input = input("Please enter a weight in kilograms: ").strip()
+    return kg_value * CONVERSION_FACTOR
 
 
 def main():
