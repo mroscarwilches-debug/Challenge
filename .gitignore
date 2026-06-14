@@ -1,0 +1,6 @@
+echo "# Python
+__pycache__/
+*.pyc
+.env
+**/.env
+.gitignore
