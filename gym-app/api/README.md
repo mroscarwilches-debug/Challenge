@@ -32,6 +32,9 @@ Request body:
 ```
 
 - `unit` must be `"kg"` or `"lb"`.
+- `weight` must be greater than zero and no more than 250 kg / 551.16 lb
+  (a sanity limit, not a real body weight - catches typos like grams
+  entered into a kg field).
 - Returns `201` with the created user.
 - Returns `400` if `id`, `name`, `weight`, or `unit` are missing/invalid.
 - Returns `409` if a user with the same `id` already exists.

@@ -22,6 +22,12 @@ app = Flask(__name__)
 # The two units this API knows about. Anything else is a 400 error.
 VALID_UNITS = {"kg", "lb"}
 
+# No real person weighs this much - this catches obvious typos (like
+# entering grams in a kg field) before they hit the database. Both
+# limits represent the same cutoff (250 kg), just in each unit.
+MAX_WEIGHT_KG = Decimal("250")
+MAX_WEIGHT_LB = Decimal("551.16")
+
 
 @app.errorhandler(psycopg2.OperationalError)
 def handle_database_unavailable(error):
@@ -100,6 +106,10 @@ def create_user():
         return jsonify(error="'weight' must be a number"), 400
     if weight_value <= 0:
         return jsonify(error="'weight' must be greater than zero"), 400
+    if unit == "kg" and weight_value > MAX_WEIGHT_KG:
+        return jsonify(error=f"'weight' must be at most {MAX_WEIGHT_KG} kg"), 400
+    if unit == "lb" and weight_value > MAX_WEIGHT_LB:
+        return jsonify(error=f"'weight' must be at most {MAX_WEIGHT_LB} lb"), 400
 
     # We always save both units, so figure out the one that's missing.
     if unit == "kg":

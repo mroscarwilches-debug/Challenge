@@ -119,6 +119,33 @@ def test_create_user_missing_id():
     assert response.status_code == 400
 
 
+def test_create_user_invalid_unit():
+    # Checks a unit other than kg/lb (e.g. grams) gets rejected.
+    client = make_client()
+    response = client.post(
+        "/users", json={"id": 1, "name": "Oscar", "weight": 6000, "unit": "g"}
+    )
+    assert response.status_code == 400
+
+
+def test_create_user_weight_too_high_kg():
+    # Checks an unrealistic weight in kg (like a typo) gets rejected.
+    client = make_client()
+    response = client.post(
+        "/users", json={"id": 1, "name": "Oscar", "weight": 6000, "unit": "kg"}
+    )
+    assert response.status_code == 400
+
+
+def test_create_user_weight_too_high_lb():
+    # Same check, but for weights entered in lb.
+    client = make_client()
+    response = client.post(
+        "/users", json={"id": 1, "name": "Oscar", "weight": 6000, "unit": "lb"}
+    )
+    assert response.status_code == 400
+
+
 def test_create_user_missing_name():
     # Checks creating a user without a name gets rejected.
     client = make_client()
